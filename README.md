@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌤️ Skye Weather
 
-## Getting Started
+A premium glassmorphism weather app with real-time data and dynamic backgrounds. Designed as a portfolio piece — every detail tuned for a polished, human-crafted feel.
 
-First, run the development server:
+## 🌐 Live Demo
+
+[View Live Site](https://skye-weather-vert.vercel.app)
+
+## ✨ Features
+
+- **Glassmorphism UI** — layered frosted glass cards with deep blur, subtle borders, and micro-interactions
+- **Dynamic backgrounds** — scene changes based on weather: warm gradients (sunny), dark slate with rain animation (rainy), muted purple (cloudy), deep navy with twinkling stars (night), cold blue with snowfall (snowy)
+- **Real-time weather** — live data from OpenWeatherMap API (current conditions + 5-day forecast + 3-hour intervals)
+- **Hourly forecast** — horizontal scrollable strip of 8 cards with time, icon, and temperature
+- **5-day forecast** — clean list with day, icon, condition, high/low
+- **Weather details grid** — 2x2 cards for humidity, wind speed, visibility, UV index with animated fill bars
+- **Search with recent history** — glassmorphism input, localStorage for recent searches, animated dropdown
+- **Loading skeletons** — shimmer placeholders for every section while data loads
+- **Custom animated SVG icons** — 9 hand-crafted weather icons (no external icon libraries)
+- **Fully responsive** — mobile-first, adapts from phone to desktop
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| [Next.js 14](https://nextjs.org/) (App Router) | Framework |
+| [Tailwind CSS](https://tailwindcss.com/) | Styling |
+| [Framer Motion](https://www.framer.com/motion/) | Animations & transitions |
+| [OpenWeatherMap API](https://openweathermap.org/api) | Weather data |
+| [Google Fonts](https://fonts.google.com/) (Cormorant Garamond + Inter) | Typography |
+| [Vercel](https://vercel.com/) | Deployment |
+
+## 🚀 Getting Started
 
 ```bash
+git clone https://github.com/mahdiii00/skye-weather
+cd skye-weather
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔑 API Key
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app uses mock data by default. To enable live weather:
 
-## Learn More
+1. Get a free API key at [OpenWeatherMap](https://openweathermap.org/api)
+2. Open `lib/weather.ts` and replace the placeholder:
 
-To learn more about Next.js, take a look at the following resources:
+```ts
+const API_KEY: string = "your_api_key_here";
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. The app falls back to realistic mock data when the key is set to the placeholder, so it always looks good.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```
+├── app/
+│   ├── globals.css          # Glassmorphism styles, rain/snow/stars animations
+│   ├── layout.tsx           # Fonts, metadata
+│   └── page.tsx             # Main app — state, data fetching, layout
+├── components/
+│   ├── SearchBar.tsx        # Glass input + recent searches dropdown
+│   ├── HeroCard.tsx         # City, temperature, condition, pills
+│   ├── HourlyForecast.tsx   # Horizontal scrollable hourly strip
+│   ├── FiveDayForecast.tsx  # 5-day forecast list
+│   ├── WeatherDetails.tsx   # 2×2 humidity, wind, visibility, UV
+│   ├── WeatherBackground.tsx# Dynamic gradient + particle animations
+│   ├── WeatherIcons.tsx     # 9 custom animated SVG icons
+│   └── SkeletonLoader.tsx   # Loading skeletons
+└── lib/
+    └── weather.ts           # API calls + mock data fallback
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧑‍🎨 Design Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Typography**: Cormorant Garamond (serif) for temperature display, Inter (sans-serif) for UI — a deliberate contrast that feels editorial and premium
+- **Glassmorphism**: Backdrop blur between 8px–24px, subtle white borders at 10–18% opacity, hover states that deepen the glass
+- **Animations**: All transitions use Framer Motion with custom cubic-bezier curves for buttery motion
+- **Mobile-first**: Layout stacks vertically on small screens, with a max-width container on desktop
+
+## 📄 License
+
+MIT
+
+---
+
+Built by [Mahdi Slimani](https://mahdi-portfolio-six.vercel.app)
